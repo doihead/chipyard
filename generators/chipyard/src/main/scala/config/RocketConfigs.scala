@@ -19,7 +19,7 @@ class DualRocketConfig extends Config(
 class MysteryRocketConfig extends Config(
   new chipyard.example.WithGCD(useAXI4=false, useBlackBox=false) ++
   new chipyard.config.WithRocketDCacheScratchpad ++
-  new freechips.rocketchip.subsystem.WithNBigCores(1) ++
+  new freechips.rocketchip.rocket.WithNHugeCores(1) ++
   new chipyard.config.AbstractConfig)
 
 class TinyRocketConfig extends Config(
