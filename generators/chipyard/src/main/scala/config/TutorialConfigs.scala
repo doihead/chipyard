@@ -77,7 +77,7 @@ class TutorialNoCConfig extends Config(
     constellation.protocol.DiplomaticNetworkNodeMapping(
       inNodeMapping = ListMap(
         "Core 0" -> 0, "Core 1" -> 1,
-        "serial-tl" -> 2),
+        "serial_tl" -> 2),
       outNodeMapping = ListMap(
         "system[0]" -> 3, "system[1]" -> 4, "system[2]" -> 5, "system[3]" -> 6,
         "pbus" -> 7))
