@@ -7,6 +7,9 @@ import freechips.rocketchip.subsystem.{InCluster}
 // --------------
 // Rocket Configs
 // --------------
+class BigRocketConfig extends Config(
+  new freechips.rocketchip.rocket.WithNBigCores(1) ++         // single rocket-core
+  new chipyard.config.AbstractConfig)                          // builds one on top of another, so the single rocket-core is built on top of the AbstractConfig
 
 class RocketConfig extends Config(
   new freechips.rocketchip.rocket.WithNHugeCores(1) ++         // single rocket-core
@@ -19,7 +22,7 @@ class DualRocketConfig extends Config(
 class MysteryRocketConfig extends Config(
   new chipyard.example.WithGCD(useAXI4=false, useBlackBox=false) ++
   new chipyard.config.WithRocketDCacheScratchpad ++
-  new freechips.rocketchip.rocket.WithNHugeCores(1) ++
+  new freechips.rocketchip.rocket.WithNBigCores(1) ++
   new chipyard.config.AbstractConfig)
 
 class TinyRocketConfig extends Config(
