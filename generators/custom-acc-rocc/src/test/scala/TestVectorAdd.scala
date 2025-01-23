@@ -14,7 +14,7 @@ class VectorAddTest extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "Vector-Add RoCC Accelerator"
 
   it should "add two vectors" in {
-	test(new VectorAdd()(Parameters.empty)).withAnnotations(Seq(VcsBackendAnnotation, WriteFsdbAnnotation)) { c =>
+	test(new VectorAdd()(Parameters.empty)).withAnnotations(Seq(VerilatorBackendAnnotation, WriteFstAnnotation)) { c =>
 
   	/* expect ready */
   	c.io.cmd.ready.expect(true.B)

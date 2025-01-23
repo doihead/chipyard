@@ -372,7 +372,7 @@ class BigRocketConfig extends Config(
   </tr>
 </table>
 
-Inspect `TinyRocketConfig` & answer the following questions. You should be able to find the answers or clues to the answers by grepping in `$chipyard/generators/chipyard/src/main/scala/` or `$chipyard/generators/rocket-chip/src/main/scala/`.
+Inspect `MysteryRocketConfig` & answer the following questions. You should be able to find the answers or clues to the answers by grepping in `$chipyard/generators/chipyard/src/main/scala/` or `$chipyard/generators/rocket-chip/src/main/scala/`.
 
 **1. How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?**
 
