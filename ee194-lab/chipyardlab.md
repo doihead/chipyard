@@ -93,7 +93,7 @@ to switch to the lab branch.
 
 5) Run 
 ```
-<your username>@bwrcrdsl-#:/tools/C/<your username>/ee194-lab1 $ conda activate /tools/C/ee290-sp25/.conda-env/
+<your username>@bwrcrdsl-#:/tools/C/<your username>/ee194-lab1 $ conda activate /tools/C/ee290-sp25/chipyard/.conda-env/
 ```
 
 In Chipyard, we use the Conda package manager to help manage system dependencies. Conda allows users to create an “environment” that holds system dependencies like `make`, `gcc`, etc. We've also installed a pre-built RISC-V toolchain into it. We want to ensure that everyone in the class is using the same version of everything, so everyone will be using the same conda environment by activating the environment specified above. <b>You will need to do this in every new terminal & at the start of every work session.</b>
