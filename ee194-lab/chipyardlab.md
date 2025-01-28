@@ -421,8 +421,8 @@ We'll be running the `CONFIG=RocketConfig` config (the `-j16` executes the run w
 </table>
 
 After the run is done (can take ~20 minutes), check the `$chipyard/sims/vcs/generated-src` folder. Find the directory of the config that you ran and you should see the following files:
-- `XXX.top.v`: Synthesizable Verilog source
-- `XXX.harness.v`: TestHarness
+- `ChipTop.v`: Synthesizable Verilog source
+- `TestHarness.v`: TestHarness
 - `XXX.dts`: device tree string
 - `XXX.memmap.json`: memory map
 
@@ -932,7 +932,7 @@ Then, navigate to `$chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocket
 2. Your entire C refenence solution.
 3. A screenshot of your test passing.c
 
-# END OF CHIPYARD LAB (due EoD 1/29)
+# END OF CHIPYARD LAB (due EoD 1/30)
 
  <!--
 ## VLSI Flow
