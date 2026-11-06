@@ -1,0 +1,84 @@
+# Technology Setup
+# Technology used is Sky130
+vlsi.core.technology: "hammer.technology.sky130"
+
+vlsi.core.max_threads: 8
+
+# Technology paths
+technology.sky130:
+  sky130A: "/home/tools/sky130/share/pdk/sky130A"
+  sram22_sky130_macros: "/home/tools/sky130/sram22_sky130_macros/"
+  misc_tapeout_collateral: "/home/tools/sky130/cadence-skywater-130-pdk"
+
+  # this key is OPTIONAL, no NDA files will be used if it does not point to a valid path
+  sky130_nda: "/path/to/skywater-src-nda"
+
+# General Hammer Inputs
+
+# Hammer will auto-generate a CPF for simple power designs; see hammer/src/hammer-vlsi/defaults.yml for more info
+vlsi.inputs.power_spec_mode: "auto"
+vlsi.inputs.power_spec_type: "cpf"
+
+# Specify clock signals
+vlsi.inputs.clocks: [
+  {name: "clock_uncore", period: "20ns", uncertainty: "1ns"}
+]
+
+# Generate Make include to aid in flow
+vlsi.core.build_system: make
+
+###########################################
+# Constraints
+###########################################
+vlsi.inputs.hierarchical:
+  mode: hierarchical
+  top_module: ChipTop
+  config_source: manual
+  manual_modules:
+    - ChipTop:
+      - ShuttleTile
+
+  constraints_meta: append
+  constraints:
+    - ChipTop:
+        top_level_clock: &CLOCK0_PRD "20ns"
+        # Very relaxed clock — first pipeclean pass
+        vlsi.inputs.clocks:
+          - {name: "clock_uncore", path: "[get_ports io_clock]", period: "20ns", uncertainty: "1ns"}
+
+  # Placement Constraints
+  vlsi.inputs.placement_constraints:
+    - {path: "ChipTop", type: toplevel, x: 0, y: 0, width: 3588, height: 2992, margins: {left: 10.12 ,right: 10.12 ,top: 10.88 ,bottom: 10.88}}
+
+  # Pin placement constraints
+  vlsi.inputs.pin_mode: generated
+  vlsi.inputs.pin.generate_mode: semi_auto
+  vlsi.inputs.pin.assignments: [
+    {pins: "*", layers: ["met2", "met4"], side: "bottom"}
+  ]
+
+# Power Straps
+par.power_straps_mode: generate
+par.generate_power_straps_method: by_tracks
+par.blockage_spacing: 2.0
+par.blockage_spacing_top_layer: met3
+par.generate_power_straps_options:
+  by_tracks:
+    strap_layers:
+      - met4
+      - met5
+    pin_layers:
+      - met5
+    blockage_spacing_met2: 4.0
+    blockage_spacing_met4: 2.0
+    track_width: 3
+    track_width_met5: 1
+    track_spacing: 5
+    track_start: 10
+    track_start_met5: 1
+    power_utilization: 0.1
+    power_utilization_met4: 0.1
+    power_utilization_met5: 0.1
+
+# SRAM Compiler compiler options
+vlsi.core.sram_generator_tool: "hammer.technology.sky130.sram_compiler"

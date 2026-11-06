@@ -1,0 +1,53 @@
+###########################################
+# Constraints
+###########################################
+vlsi.inputs.hierarchical:
+  constraints_meta: append
+  constraints:
+    - ShuttleTile:
+        synthesis.inputs.retime_modules: ["FPUFMA*", "IntToFP*", "FPToFP*", "TandemFMAPipe*", "*Pipe"]
+        vlsi.inputs.placement_constraints:
+          - {path: ShuttleTile, type: toplevel, x: 0, y: 0, width: 1000, height: 1000, margins: {left: 0, right: 0, top: 0, bottom: 0}}
+          # - {path: ShuttleTile/vector_unit/vu/vopu,  x: 20.064, y: 18.24,  type: hierarchical, master: "OuterProductUnit", top_layer: M8, width: 547.2, height: 547.2, orient: "r0"}
+        
+          # SRAM macros are left unplaced here — auto_place_srams handles them during par.
+        vlsi.inputs.pin_mode: generated
+        vlsi.inputs.pin.assignments: [{pins: "*", layers: ["met2", "met4"], side: "bottom"}]
+        vlsi.inputs.clocks:
+          - {name: "clock", period: "20ns", uncertainty: "0.1ns"}
+
+        vlsi.inputs.delays: [
+          { name: "reset", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_in_a_ready", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_in_a_valid", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_in_a_bits_*", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_in_d_ready", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_in_d_valid", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_in_d_bits_*", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_a_ready", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_a_valid", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_a_bits_*", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_b_ready", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_b_valid", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_b_bits_*", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_c_ready", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_c_valid", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_c_bits_*", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_d_ready", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_d_valid", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_d_bits_*", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_e_ready", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_e_valid", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_buffer_out_e_bits_*", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_applyOrElse_out_a_ready", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_applyOrElse_out_a_valid", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_applyOrElse_out_a_bits_*", direction: "output", clock: "clock", delay: "4ns" },
+          { name: "auto_applyOrElse_out_d_valid", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_applyOrElse_out_d_bits_*", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_int_local_in_3_0", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_int_local_in_2_0", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_int_local_in_1_0", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_int_local_in_1_1", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_int_local_in_0_0", direction: "input", clock: "clock", delay: "4ns" },
+          { name: "auto_hartid_in", direction: "input", clock: "clock", delay: "4ns" },
+        ]

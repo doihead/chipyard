@@ -19,7 +19,7 @@ include $(base_dir)/variables.mk
 # vlsi types and rules
 #########################################################################################
 sim_name           ?= vcs # needed for GenerateSimFiles, but is unused
-tech_name          ?= asap7
+tech_name          ?= sky130
 tech_dir           ?= $(if $(filter $(tech_name),sky130 asap7 nangate45),\
                         $(shell python3 -c "import os, hammer.technology.$(tech_name);\
 						print(os.path.dirname(hammer.technology.$(tech_name).__file__))"),\
@@ -35,9 +35,9 @@ else
 endif
 
 ENV_YML            ?= $(vlsi_dir)/env.yml
-TECH_CONF          ?= example-$(tech_name).yml
-TOOLS_CONF         ?= example-tools.yml
-INPUT_CONFS        ?= $(TOOLS_CONF) $(TECH_CONF)
+DESIGN_CONF        ?= $(vlsi_dir)/specs/chipyard-hier.yml $(vlsi_dir)/specs/shuttletile.yml
+TOOLS_CONF         ?= m6mini-tools.yml
+INPUT_CONFS        ?= $(TOOLS_CONF) $(DESIGN_CONF)
 HAMMER_EXEC        ?= $(if $(filter $(tech_name),sky130),\
                         ./example-vlsi-sky130,\
                         ./example-vlsi)

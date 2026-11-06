@@ -1,0 +1,13 @@
+# Base path to where Mentor tools are installed
+mentor.mentor_home: ""
+# Mentor license server/file
+mentor.MGLS_LICENSE_FILE: ""
+# Base path to where Cadence tools are installed
+cadence.cadence_home: "/tools/cadence"
+# Cadence license server/file
+cadence.CDS_LIC_FILE: "5280@bwrcflex-1.eecs.berkeley.edu:5280@bwrcflex-2.eecs.berkeley.edu:5280@license-srv.eecs.berkeley.edu"
+# Base path to where Synopsys tools are installed
+synopsys.synopsys_home: "/tools/synopsys"
+# Synopsys license server/files
+synopsys.SNPSLMD_LICENSE_FILE: "1701@bwrcflex-1.eecs.berkeley.edu:1701@bwrcflex-2.eecs.berkeley.edu"
+synopsys.MGLS_LICENSE_FILE: ""
